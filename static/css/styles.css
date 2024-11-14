@@ -1,0 +1,134 @@
+
+:root{
+    /* --theme-color-1: #1d0b5c; */
+    --theme-color-1: #22202b;
+    --theme-color-2: #45015f;
+    --font-color-1: #eee;
+    --hover-bg-color-1: #543ecf;
+    --hover-color-1: #fff;
+    --crimson-color: crimson; /* Add a new variable for the crimson color */
+    
+}
+
+
+body {
+    font-family: Poppins;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--theme-color-1);
+    color: var(--font-color-1);
+}
+
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* max-width: 800px; */
+}
+
+.date-shift-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.shift-container,
+.date-container{
+    width: 40%;
+    /* background-color: red; */
+    display: flex;
+    justify-content:space-between ;
+}
+
+.date-container label{
+    width:40%;
+    /* background-color: green; */
+}
+
+.date-container input{
+    background-color: var(--font-color-1);
+    color: var(--theme-color-1);
+    width:max-content;
+    font-size: 1rem;
+
+}
+
+
+
+
+
+.date-container input:hover{
+    /* background-color: red; */
+    /* width:max-content; */
+    /* font-size: 1.25rem; */
+    color: var(--theme-color-1);
+
+}
+
+#date{
+    /* width: 50%; */
+}
+
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--hover-bg-color-1);
+    color: var(--font-color-1);
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    border-radius: .5rem;
+}
+
+.question {
+    margin: 1px 0 1px 0;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* background-color: seagreen; */
+    /* align-content: center; */
+    align-items: center;
+    outline: #4CAF50;
+    border: #4CAF50 1px solid;
+}
+
+
+label{
+    /* background-color: pink; */
+    margin: 1px 0;
+}
+
+checkbox{
+    font-size: 2rem;
+}
+
+input{
+    /* background-color: pink; */
+    margin: 1px 0;
+    width: 100PX;
+    font-weight: bold;
+    background-color: var(--hover-bg-color-1);
+    color: var(--font-color-1);
+    font-size: 1.1rem;
+
+
+}
+
+
+
+.question:hover{
+    background-color: var(--hover-bg-color-1);
+}
+
+input:hover{
+    color: var(--font-color-1);
+    border: var(--font-color-1) 1px solid;
+}

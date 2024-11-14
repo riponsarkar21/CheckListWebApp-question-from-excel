@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Data Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- <script>
+        function toggleInput(checkbox, inputId) {
+            const inputField = document.getElementById(inputId);
+            inputField.disabled = !checkbox.checked; // Enable input only if checkbox is checked
+            if (!checkbox.checked) {
+                inputField.value = ''; // Clear input field if unchecked
+            }
+            checkAllFieldsFilled(); // Check after each checkbox click
+        }
+    
+        function checkAllFieldsFilled() {
+            const visitorFields = document.querySelectorAll('input[type="text"]');
+            const allFilled = Array.from(visitorFields).every(field => field.value.trim() !== '' && !field.disabled);
+    
+            // Set background to crimson if all fields are filled, otherwise reset to default
+            document.body.style.backgroundColor = allFilled ? 'document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--crimson-color').trim();' : ''; // Default color (empty string) resets to the default
+        }
+    </script> -->
+
+    <script>
+        function toggleInput(checkbox, inputId) {
+            const inputField = document.getElementById(inputId);
+            inputField.disabled = !checkbox.checked; // Enable input only if checkbox is checked
+            if (!checkbox.checked) {
+                inputField.value = ''; // Clear input field if unchecked
+            }
+            checkAllFieldsFilled(); // Check after each checkbox click
+        }
+    
+        function checkAllFieldsFilled() {
+            const visitorFields = document.querySelectorAll('input[type="text"]');
+            const allFilled = Array.from(visitorFields).every(field => field.value.trim() !== '' && !field.disabled);
+    
+            // Set background to the CSS variable if all fields are filled, otherwise reset to default
+            if (allFilled) {
+                document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color-2').trim();
+            } else {
+                document.body.style.backgroundColor = ''; // Reset to default
+            }
+        }
+    </script>
+    
+    
+</head>
+<body>
+    <h1>Visitor Data Form</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/" method="POST">
+        <!-- <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="shift">Select Shift:</label>
+        <select id="shift" name="shift" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select> -->
+
+        <div class="date-shift-container">
+            <!-- <div class="date-container">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div> -->
+            <div class="date-container">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="shift-container">
+                <label for="shift">Select Shift:</label>
+                <select id="shift" name="shift" required>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+
+            </div>
+        </div>
+
+        <h2>Visitor Information</h2>
+        {% for question in questions %}
+            <div class="question">
+                <label>{{ question }}</label>
+                <input type="checkbox" id="checkbox_{{ loop.index0 }}" onclick="toggleInput(this, 'visitor_{{ loop.index0 }}')">
+                <label for="visitor_{{ loop.index0 }}">Visitor Name:</label>
+                <input type="text" id="visitor_{{ loop.index0 }}" name="visitor_{{ loop.index0 }}" disabled oninput="checkAllFieldsFilled()">
+            </div>
+        {% endfor %}
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
